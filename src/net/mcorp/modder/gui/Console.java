@@ -64,11 +64,11 @@ public class Console implements Runnable {
 		legalDisclaimer += "\t    assets from the games unless they are retrieved from the local storage medium(s).\n";
 		legalDisclaimer += "\t- The mod manager's will be responsible for maintaining a snapshot of the game files.\n";
 		legalDisclaimer += "\t    this snapshot will be restored upon the deletion of the mod manager or the deletion\n";
-		legalDisclaimer += "\t    of this program. If this progam or the mod manager is deleted directly and manual then\n";
+		legalDisclaimer += "\t    of this program. If this program or the mod manager is deleted manually then\n";
 		legalDisclaimer += "\t    this will be voided.\n";
 		legalDisclaimer += "\t- The mod manager's will be responsible for always following these rules. Any\n";
 		legalDisclaimer += "\t    manager not following these rules will be responsible for any legal action's\n";
-		legalDisclaimer += "\t    that may occur (Unless stated otherwise in their legal agreement).\n";
+		legalDisclaimer += "\t    that may occur.\n";
 		
 		legalDisclaimer += "\n-- What legal responsibilty do I (you) have? --\n";
 		legalDisclaimer += "\t- I (you) understand that these tools may copy assets out of games and store them\n";
@@ -89,15 +89,15 @@ public class Console implements Runnable {
 		legalDisclaimer += "\t- This tool is meant to retrieve and execute other software from github that is\n";
 		legalDisclaimer += "\t    responsible for modding a game, the software may contain tools to help retrieve\n";
 		legalDisclaimer += "\t    assets from the local instance of the game, it shall not contain any of the assets\n";
-		legalDisclaimer += "\t    in its retrieval state.\n";
-		legalDisclaimer += "\t- The software retrieved by this tool is responsible for holding a snapshot of the any files\n";
+		legalDisclaimer += "\t    in the download.\n";
+		legalDisclaimer += "\t- The software retrieved by this tool is responsible for holding a snapshot of any files\n";
 		legalDisclaimer += "\t    it may mess with. These files will be restored upon a proper uninstall, if the removeal\n";
-		legalDisclaimer += "\t    of this tool or of the software is done manually then this will bulletpoint will be voided.\n";
+		legalDisclaimer += "\t    of this tool or of the software is done manually then this will be voided.\n";
 		legalDisclaimer += "\t- TL;DR - Dont mess around, don't do anything Illegal.\n";
 		
 		legalDisclaimer += "\n\t\t-- Do you Accept? [YES/no] (Case Sensitive) --\n";
 		legalDisclaimer += "\t- By typing 'YES' you agree to everything stated above.\n";
-		legalDisclaimer += "\t- By typing 'NO' you dont agree to everything stated above and you do accept that you will not use this software.\n";
+		legalDisclaimer += "\t- By typing anything else you dont agree to everything stated above and you do accept that you will not use this software.\n";
 		legalDisclaimer += "\n";
 		
 		System.out.println(legalDisclaimer);
