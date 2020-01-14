@@ -1,54 +1,13 @@
-package net.mcorp.modder.gui;
+package net.mcorp.modder.gui.console.prompts;
 
-import java.io.IOException;
+import net.mcorp.modder.gui.console.actions.ChangePromptAction;
+import net.mcorp.modder.gui.console.actions.ConsoleAction;
+import net.mcorp.modder.gui.console.actions.ExitAction;
 
-public class Console implements Runnable {
-
-	public final GUIManager guiManager;
-	
-	private boolean ideMode;
-	public boolean ideMode() { return this.ideMode; };
-	
-	private boolean signedLegal = false;
-	public final boolean signedLegal() { return this.signedLegal; };
-	
-	public Console(GUIManager guiManager, boolean ideMode) {
-		this.guiManager = guiManager;
-		this.ideMode = ideMode;
-	}
-	
-	public synchronized boolean clear() {
-		if(ideMode)
-			return false;
-		
-		try {
-			if (System.getProperty("os.name").contains("Windows"))
-
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-
-	        else
-
-	        	System.out.print("[CLEAR SCREEN]\033[H\033[2J\n");
-		}catch(Exception e) {
-			return false;
-		}
-		return true;
-	}
-	
-	public synchronized String readLine() {
-		String str = "";
-		char c;
-		try {
-			while((c = (char) System.in.read()) != '\n') {
-				str += c;
-			}
-		} catch (IOException e) {}
-		return str;
-	}
+public class LegalPrompt extends ConsolePrompt {
 
 	@Override
-	public void run() {
-		
+	public ConsoleAction mainloop() {
 		String legalDisclaimer = "";
 		legalDisclaimer += "-=[ Modder | Legal Disclaimer ]=-\n";
 		legalDisclaimer += "\tPlease note that this tool is meant only for modding purposes.\n";
@@ -102,54 +61,16 @@ public class Console implements Runnable {
 		
 		System.out.println(legalDisclaimer);
 		
-		System.out.print("Do you Accept? [YES/no]: ");
+		String accepted = LegalPrompt.input("Do you Accept? [YES/no]: ");
 		
-		String accepted = this.readLine();
-		System.out.println();
-		
+		ConsoleAction ca = new ConsoleAction();
 		if(accepted.contentEquals("YES")) {
-			this.signedLegal = true;
+			ca.actions.add(new ChangePromptAction(new MainMenuPrompt()));
+			return ca;
 		}else {
-			System.out.println("End user did not agree to legal disclaimer, exiting program now!!!");
-			this.signedLegal = false;
-			System.exit(1);
-			return;
+			ca.actions.add(new ExitAction());
+			return ca;
 		}
-		
-		this.clear();
-		boolean running = true;
-		while(running) {
-			
-			String mainmenu = "";
-			mainmenu += "-=[ Modder | Main Menu ]=-\n";
-			mainmenu += "\t1)Games\n";
-			mainmenu += "\t2)Options\n";
-			mainmenu += "\t3)Credits\n";
-			mainmenu += "\tQ)Quit\n";
-			mainmenu += "Please select from the provided list.\n";
-			mainmenu += "\n";
-			System.out.println(mainmenu);
-			
-			String command = this.readLine();
-			this.clear();
-			if(command.equalsIgnoreCase("1")) {
-				System.out.println("-=[ Modder | Games ]=-");
-			}else
-			if(command.equalsIgnoreCase("2")) {
-				System.out.println("-=[ Modder | Options ]=-");
-			}else
-			if(command.equalsIgnoreCase("3")) {
-				System.out.println("-=[ Modder | Credits ]=-");
-			}else 
-			if(command.equalsIgnoreCase("Q")) {
-				System.out.println("-=[ Exiting ]=-\nWrapping up before exiting...");
-				System.exit(0);
-			}else {
-				System.out.println("Invalid command choice, please select a valid command.");
-			}
-			
-		}
-		
 	}
 
 }

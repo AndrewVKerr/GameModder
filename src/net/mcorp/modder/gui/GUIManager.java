@@ -3,6 +3,7 @@ package net.mcorp.modder.gui;
 import java.awt.GraphicsEnvironment;
 
 import net.mcorp.modder.Modder;
+import net.mcorp.modder.gui.console.Console;
 
 public class GUIManager {
 	
